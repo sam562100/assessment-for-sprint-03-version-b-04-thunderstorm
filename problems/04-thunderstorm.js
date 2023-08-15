@@ -5,7 +5,7 @@ function should `console.log` each storm event, followed by a pause of 200ms
 after each event.
 
 - For the "lightning" storm event, you should first log a "FLASH!" followed by a
-  "BOOM!" 400ms later. 
+  "BOOM!" 400ms later.
     - Note: If there is another storm event after the lightning, it should
       execute 200ms after the "FLASH!"
 - For the "rain" or "wind" event, you should simply log the name of the storm
@@ -44,8 +44,28 @@ thunderstorm(stormEvents3);
 ***********************************************************************/
 
 function thunderstorm(stormEvents) {
-  // Your code here
+  debugger
+  if (stormEvents.length === 0) return; //base case
+  let firstEvent = stormEvents.shift(); //recursion
+  if (firstEvent === 'lightning') {
+    console.log("FLASH!");
+    setTimeout(()=> {
+      thunderstorm(stormEvents);
+      console.log("BOOM!");
+    }, 400);
+  } else if(firstEvent === 'wind') {
+    console.log('wind');
+    setTimeout(()=>{
+      thunderstorm(stormEvents);
+    }, 200);
+  } else if(firstEvent === 'rain') {
+    console.log('rain');
+    setTimeout(()=>{
+      thunderstorm(stormEvents);
+    }, 200);
+  }
 }
+
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
